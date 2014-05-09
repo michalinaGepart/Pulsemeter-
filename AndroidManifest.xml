@@ -21,7 +21,36 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+            <activity
+          	  android:name="com.example.pulsemeter.measurement"
+         	   android:label="@string/mTitle">
+            </activity>
+            <activity
+         	   android:name="com.example.pulsemeter.information"
+         	   android:label="@string/mInfo">
+            </activity>
+            <activity
+          	  android:name="com.example.pulsemeter.history"
+          	  android:label="@string/mHistory">
+            </activity>
+                        <activity
+          	  android:name="com.example.pulsemeter.info1"
+          	  android:label="@string/info1"
+          	  android:theme="@android:style/Theme.Dialog"
+>
+            </activity>
+                        <activity
+          	  android:name="com.example.pulsemeter.info2"
+          	  android:label="@string/info2"
+          	  android:theme="@android:style/Theme.Dialog">>
+            </activity>
+                        <activity
+          	  android:name="com.example.pulsemeter.info3"
+          	  android:label="@string/info3"
+          	  android:theme="@android:style/Theme.Dialog">>
+            </activity>
     </application>
 
 </manifest>

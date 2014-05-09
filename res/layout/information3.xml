@@ -1,3 +1,4 @@
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,15 +12,17 @@
     android:layout_gravity="center"
     android:gravity="center"
     tools:context="com.example.pulsemeter.MainActivity$PlaceholderFragment" >
+
     
 	<TextView
-	    android:text="@string/information"
+	    android:text="@string/information3"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:textColor="#000000"
 	    android:background="@drawable/buttonshape"
 	    android:padding="10dip"
 	    ></TextView>
+    
 
 
 </LinearLayout>

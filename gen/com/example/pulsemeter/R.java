@@ -1081,6 +1081,7 @@ containing a value of this type.
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
         public static final int buttonshape=0x7f020057;
         public static final int ic_launcher=0x7f020058;
+        public static final int logo=0x7f020059;
     }
     public static final class id {
         public static final int action_bar=0x7f05001c;
@@ -1094,7 +1095,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
-        public static final int action_settings=0x7f050040;
+        public static final int action_settings=0x7f050046;
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
@@ -1102,6 +1103,7 @@ containing a value of this type.
         public static final int collapseActionView=0x7f05000d;
         public static final int container=0x7f05003c;
         public static final int default_activity_button=0x7f050028;
+        public static final int diagnosis=0x7f050045;
         public static final int dialog=0x7f05000e;
         public static final int disableHome=0x7f050008;
         public static final int dropdown=0x7f05000f;
@@ -1116,9 +1118,14 @@ containing a value of this type.
         public static final int ifRoom=0x7f05000a;
         public static final int image=0x7f050027;
         public static final int info=0x7f05003e;
+        public static final int info1=0x7f050041;
+        public static final int info2=0x7f050042;
+        public static final int info3=0x7f050043;
         public static final int listMode=0x7f050001;
         public static final int list_item=0x7f050029;
+        public static final int logo=0x7f050040;
         public static final int measure=0x7f05003d;
+        public static final int measureLayout=0x7f050044;
         public static final int middle=0x7f050012;
         public static final int never=0x7f050009;
         public static final int none=0x7f050010;
@@ -1201,8 +1208,13 @@ containing a value of this type.
         public static final int abc_simple_decor=0x7f030017;
         public static final int activity_main=0x7f030018;
         public static final int fragment_main=0x7f030019;
-        public static final int information=0x7f03001a;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001b;
+        public static final int history=0x7f03001a;
+        public static final int info1=0x7f03001b;
+        public static final int info2=0x7f03001c;
+        public static final int information=0x7f03001d;
+        public static final int information3=0x7f03001e;
+        public static final int measure=0x7f03001f;
+        public static final int support_simple_spinner_dropdown_item=0x7f030020;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;
@@ -1250,10 +1262,20 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with_application=0x7f0a000b;
         public static final int action_settings=0x7f0a000f;
         public static final int app_name=0x7f0a000d;
+        public static final int diagnosis=0x7f0a0018;
         public static final int hello_world=0x7f0a000e;
         public static final int history=0x7f0a0012;
         public static final int info=0x7f0a0011;
+        public static final int info1=0x7f0a0019;
+        public static final int info2=0x7f0a001a;
+        public static final int info3=0x7f0a001b;
         public static final int information=0x7f0a0013;
+        public static final int information2=0x7f0a001c;
+        public static final int information3=0x7f0a001d;
+        public static final int logo=0x7f0a0017;
+        public static final int mHistory=0x7f0a0016;
+        public static final int mInfo=0x7f0a0015;
+        public static final int mTitle=0x7f0a0014;
         public static final int measurePulse=0x7f0a0010;
     }
     public static final class style {
