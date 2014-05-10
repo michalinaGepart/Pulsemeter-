@@ -3,6 +3,9 @@
     package="com.example.pulsemeter"
     android:versionCode="1"
     android:versionName="1.0" >
+    
+      <uses-permission android:name="android.permission.BLUETOOTH" />
+        <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -41,7 +44,7 @@
           	  android:theme="@android:style/Theme.Dialog"
 >
             </activity>
-                        <activity
+            <activity
           	  android:name="com.example.pulsemeter.info2"
           	  android:label="@string/info2"
           	  android:theme="@android:style/Theme.Dialog">>

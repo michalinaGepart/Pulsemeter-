@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="dialog_message">Your mobile phone doesn\'t support Bluetooth. The measurements cannot be made.</string>
+    <string name="dialog_title">Oops!</string>
     <string name="app_name">Pulsemeter</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -26,4 +28,8 @@ Check for blood flow after an injury or when a blood vessel may be blocked.\n
 Check on medicines or diseases that cause a slow heart rate. Your doctor may ask you to check your pulse every day if you have heart disease or if you are taking certain medicines that can slow your heart rate, such as digoxin or beta-blockers (such as atenolol or propranolol).\n 
 Check your general health and fitness level. Checking your pulse rate at rest, during exercise, or immediately after vigorous exercise can give you important information about your overall fitness level. </string>
 <string name="information3">The chart below shows the normal range of a resting heart rate (pulse rate after resting 10 minutes) in beats per minute, according to age. Many things can cause changes in your normal heart rate, including your age, activity level, and the time of day.</string>
+<string name="historyDate">Date of measurement: </string>
+<string name="historyResult">Result:</string>
+
+
 </resources>

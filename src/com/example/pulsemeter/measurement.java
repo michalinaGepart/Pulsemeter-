@@ -1,6 +1,11 @@
 package com.example.pulsemeter;
 
 
+import java.util.ArrayList;
+import java.util.Set;
+
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.LinearLayout;
@@ -11,12 +16,11 @@ import com.jjoe64.graphview.GraphViewSeries;
 import com.jjoe64.graphview.LineGraphView;
 
 public class measurement extends ActionBarActivity{
-	
+		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.measure);
-		
 		
 		GraphViewSeries exampleSeries = new GraphViewSeries(new GraphViewData[] {
 			    new GraphViewData(1, 2.0d)
@@ -27,35 +31,35 @@ public class measurement extends ActionBarActivity{
 		
 		GraphView graphView = new LineGraphView(
 			    this // context
-			    , "GraphViewDemo" // heading
+			    , "Pulses per second" // heading
 			);
 			graphView.addSeries(exampleSeries); // data
 			 
 			LinearLayout layout = (LinearLayout) findViewById(R.id.measureLayout);
-			
-//		    LinearLayout.LayoutParams layoutParams =
-//	                (RelativeLayout.LayoutParams) graphView.getLayoutParams();
-//	    layoutParams.addRule(LinearLayout.BOTTOM, 1);
 	    
 			layout.addView(graphView);
-		
-		
-		//jesli nie ma danych - ustaw textview na odpowiednia wiadomosc
-		
-		// pobieranie danych z bluetootha:
-			// zapisz jako zmienna
-			// zapisz w sql lite? 
-
-		
-		//rysowanie wykresu 
-	
-		
-
+			
+			getDataFromArduino();
+			
 	}
 	
 	public void drawGraph()
 	{
 		
+	}
+	
+	public void getDataFromArduino()
+	{
+		BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+		Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
+		ArrayList<String> mArrayAdapter = new ArrayList<String>();
+		
+		if(pairedDevices.size() > 0){
+			for(BluetoothDevice device : pairedDevices){
+		        mArrayAdapter.add(device.getName() + "\n" + device.getAddress());
+		        //if(device.getName()== ????????) TO POLACZ SIE
+			}
+		}
 	}
 
 
