@@ -43,21 +43,21 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
 			dialog.show();
 			
 		}
-//		else
-//		{
-//			
-//			if (!mBluetoothAdapter.isEnabled()) // BLUETOOTH IS DISABLED
-//			{
-//			    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-//			    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-//			    onActivityResult(REQUEST_ENABLE_BT, resultCode, enableBtIntent);
-//			}
-//			if(mBluetoothAdapter.isEnabled() || resultCode==RESULT_OK)
-//			{
+		else
+		{
+			
+			if (!mBluetoothAdapter.isEnabled()) // BLUETOOTH IS DISABLED
+			{
+			    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+			    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+			    onActivityResult(REQUEST_ENABLE_BT, resultCode, enableBtIntent);
+			}
+			if(mBluetoothAdapter.isEnabled() || resultCode==RESULT_OK)
+			{
 				Intent i = new Intent(this, measurement.class);
 				startActivity(i);
-//			}
-		//}
+			}
+		}
 
 		
 		}

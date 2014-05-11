@@ -1,11 +1,17 @@
 package com.example.pulsemeter;
 
 
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.UUID;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.LinearLayout;
@@ -43,7 +49,15 @@ public class measurement extends ActionBarActivity{
 	    
 			layout.addView(graphView);
 			
-			getDataFromArduino();
+			try {
+				estabilishConnection();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			drawGraph();
+			
+		//	calculateResult(); // after minute of measurement? 
 			
 	}
 	
@@ -83,22 +97,48 @@ public class measurement extends ActionBarActivity{
 
 	}
 	
-	public void getDataFromArduino()
+	public void estabilishConnection() throws IOException
 	{
 		BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 		Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
 		ArrayList<String> mArrayAdapter = new ArrayList<String>();
+		BluetoothDevice arduino;
+		
 		
 		if(pairedDevices.size() > 0){
 			for(BluetoothDevice device : pairedDevices){
 		        mArrayAdapter.add(device.getName() + "\n" + device.getAddress());
-		        //if(device.getName()== ????????) TO POLACZ SIE
+		        if(device.getName().equals("MacBook Air (Michasia)")) // connect with device with this name
+		        {
+		        	arduino = device;
+		        	getDataFromArduino(arduino);
+		        	break;
+		        }
 			}
+	        	
 		}
 		
-		drawGraph();
+
+	}
+	
+	public void getDataFromArduino(BluetoothDevice arduino) throws IOException
+	{
+		BluetoothSocket arduinoSocket;
+		OutputStream send;
+		InputStream receive;
 		
-		calculateResult(); // after minute of measurement? 
+		
+    	UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb"); //standard SerialPortService ID from android documentation
+        arduinoSocket = arduino.createRfcommSocketToServiceRecord(uuid);
+        arduinoSocket.connect();
+        send = arduinoSocket.getOutputStream();
+        receive = arduinoSocket.getInputStream();
+        
+		text = (TextView)findViewById(R.id.diagnosis);
+        
+        String ms = "Czesc, przybywam z Androida :)";
+        text.setText(ms);
+        send.write(ms.getBytes());
 	}
 
 
