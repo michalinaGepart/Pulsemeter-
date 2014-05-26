@@ -28,6 +28,7 @@ public class measurement extends ActionBarActivity{
 	TextView text;
 	int result; // pulses per minute
 	GraphViewSeries dataToDraw;
+	ArrayList<Integer> measurements;
 	
 	
 	@Override
@@ -36,8 +37,8 @@ public class measurement extends ActionBarActivity{
 		setContentView(R.layout.measure);
 		result = 0;
 		
-
-		
+		measurements = new ArrayList<Integer>();
+	
 		graphView = new LineGraphView(
 			    this // context
 			    , "Pulses per second" // heading
@@ -49,36 +50,33 @@ public class measurement extends ActionBarActivity{
 	    
 			layout.addView(graphView);
 			
-			try {
-				estabilishConnection();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			estabilishConnection();
 			
-			drawGraph();
+		//	drawGraph();
 			
-		//	calculateResult(); // after minute of measurement? 
+		calculateResult(); // after minute of measurement? 
 			
 	}
 	
 	public void drawGraph()
 	{
-		dataToDraw = new GraphViewSeries(new GraphViewData[] {
-			    new GraphViewData(1, 2.0d)
-			    , new GraphViewData(2, 1.5d)
-			    , new GraphViewData(3, 2.5d)
-			    , new GraphViewData(4, 1.0d)
-			});
 		
+		// append data 
+		dataToDraw = new GraphViewSeries(new GraphViewData[] {
+			});
 		graphView.addSeries(dataToDraw); // data
 	}
 	
 	public void calculateResult()
 	{
 		String ex = "Your pulse is: ";
+		result = 0;
+		int prev = 0;
 		
-		//calculations
-		result = 99; // TEMPORARY RES VALUE
+		for(int val : measurements){
+			if(prev > val)
+				result++;
+		}
 		
 		ex += result + " pulses/min";
 		text = (TextView)findViewById(R.id.diagnosis);
@@ -97,48 +95,63 @@ public class measurement extends ActionBarActivity{
 
 	}
 	
-	public void estabilishConnection() throws IOException
+	public void estabilishConnection()
 	{
 		BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 		Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
 		ArrayList<String> mArrayAdapter = new ArrayList<String>();
 		BluetoothDevice arduino;
+		text = (TextView)findViewById(R.id.diagnosis);
 		
 		
 		if(pairedDevices.size() > 0){
 			for(BluetoothDevice device : pairedDevices){
 		        mArrayAdapter.add(device.getName() + "\n" + device.getAddress());
-		        if(device.getName().equals("MacBook Air (Michasia)")) // connect with device with this name
+		        if(device.getName().equals("HC-05")) // connect with device with this name, else: use getAddress() to obtain MAC address
 		        {
 		        	arduino = device;
-		        	getDataFromArduino(arduino);
+						try {
+							getDataFromArduino(arduino);
+						} catch (IOException e) {
+							text.setText("Error occured");
+							e.printStackTrace();
+						}
 		        	break;
 		        }
+		        else
+		    		text.setText("The needed device couldn't be found. The measurements won't be made.");
 			}
-	        	
 		}
-		
-
+        else
+    		text.setText("The bluetooth didn't detect any devices.");
 	}
 	
 	public void getDataFromArduino(BluetoothDevice arduino) throws IOException
 	{
 		BluetoothSocket arduinoSocket;
-		OutputStream send;
+	//	OutputStream send;
 		InputStream receive;
 		
 		
     	UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb"); //standard SerialPortService ID from android documentation
         arduinoSocket = arduino.createRfcommSocketToServiceRecord(uuid);
         arduinoSocket.connect();
-        send = arduinoSocket.getOutputStream();
+     //   send = arduinoSocket.getOutputStream();
         receive = arduinoSocket.getInputStream();
         
 		text = (TextView)findViewById(R.id.diagnosis);
-        
         String ms = "Czesc, przybywam z Androida :)";
         text.setText(ms);
-        send.write(ms.getBytes());
+   //     send.write(ms.getBytes());
+        
+        
+        // measurements.add(value);
+        //drawGraph(value);
+	}
+	
+	public final class FeedReaderContract{
+		public FeedReaderContract(){}
+		
 	}
 
 
